@@ -21,7 +21,7 @@ public class CrewMessageController {
 
 	private final static String CHAT_QUEUE_NAME = "chat.queue";
 
-	@MessageMapping("/crew.chat/{crewId}")
+	@MessageMapping("crew.chat.{crewId}")
 	public void handleChat(CrewMessageReq request, @DestinationVariable Long crewId) {
 		log.info("{} send message to roomId {}", request.getSender(), crewId);
 		crewMessageService.send(request, crewId);
