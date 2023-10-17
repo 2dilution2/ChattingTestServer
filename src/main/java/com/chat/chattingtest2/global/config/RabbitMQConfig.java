@@ -37,33 +37,14 @@ public class RabbitMQConfig {
 	private static final String CHAT_QUEUE_NAME = "chat.queue";
 	private static final String CHAT_ROUTING_KEY = "chat.room.*";
 
-	private static final String NOTIFICATION_EXCHANGE_NAME = "notification.exchange";
-	private static final String NOTIFICATION_QUEUE_NAME = "notification.queue";
-	private static final String NOTIFICATION_ROUTING_KEY = "notification.key";
-
 	@Bean
 	public TopicExchange topicExchange() {
 		return new TopicExchange(CHAT_EXCHANGE_NAME);
 	}
 
 	@Bean
-	public DirectExchange directExchange() {
-		return new DirectExchange(NOTIFICATION_EXCHANGE_NAME);
-	}
-
-	@Bean
 	public Queue chatQueue() {
 		return new Queue(CHAT_QUEUE_NAME);
-	}
-
-	@Bean
-	Queue notificationQueue() {
-		return new Queue(NOTIFICATION_QUEUE_NAME);
-	}
-
-	@Bean
-	public Binding notificationBinding(DirectExchange directExchange) {
-		return BindingBuilder.bind(notificationQueue()).to(directExchange).with(NOTIFICATION_ROUTING_KEY);
 	}
 
 	@Bean

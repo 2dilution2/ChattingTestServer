@@ -40,10 +40,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CrewServiceImpl implements CrewService {
 
-	private final static String DIR = "crew";
-
-	private final static String CHAT_EXCHANGE_NAME = "crew.exchange";
-
 	private final CrewRepository crewRepository;
 	private final MemberRepository memberRepository;
 	private final CrewMemberRepository crewMemberRepository;
