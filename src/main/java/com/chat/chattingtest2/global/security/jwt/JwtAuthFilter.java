@@ -24,7 +24,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 	private static final String[] EXCLUDED_URL
 		= {"/api/member/sign-up", "/api/member/login",
-		"/api/member/email/send", "/api/member/email/verify"};
+		"/api/member/email/send", "/api/member/email/verify", "/ws/**"};
 
 	private static final String REISSUE_TOKEN_URL = "/api/member/token";
 	private static final String SSE_CONNECT_URL = "/api/sse/connect";

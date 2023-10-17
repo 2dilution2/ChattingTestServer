@@ -51,7 +51,7 @@ public class SecurityConfig {
 			.and()
 			.authorizeRequests()
 			.antMatchers("/api/member/sign-up", "/api/member/login",
-				"/api/member/email/send", "/api/member/email/verify", "/h2-console/**").permitAll()
+				"/api/member/email/send", "/api/member/email/verify", "/h2-console/**", "/ws/**").permitAll()
 
 			.antMatchers("/api/admin/**").hasAuthority(MemberRole.ADMIN.getValue())
 			.anyRequest().authenticated()
