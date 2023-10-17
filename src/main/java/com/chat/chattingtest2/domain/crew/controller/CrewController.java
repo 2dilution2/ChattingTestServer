@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,13 +37,11 @@ public class CrewController {
 	private final CrewService crewService;
 	private final JwtProvider jwtProvider;
 
-	@GetMapping("/{crewId}/chat")
-	public ResponseEntity<Map<String, String>> enterCrewChat(@PathVariable Long crewId, HttpServletRequest request) {
+	@MessageMapping("{crewId}.chat")
+	public void enterCrewChat(@PathVariable Long crewId, HttpServletRequest request) {
+		log.info("EnterCrewChat 엔드포인트가 crewId: {}로 호출되었습니다.", crewId);
 		String token = jwtProvider.resolveToken(request);
 		crewService.enterCrewChat(crewId, token);
-		Map<String, String> response = new HashMap<>();
-		response.put("message", "채팅방에 참여하였습니다.");
-		return ResponseEntity.ok(response);
 	}
 
 	// 글 조회
